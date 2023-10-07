@@ -1,0 +1,8 @@
+export const CHEAP = 'CHEAP'
+export const FAST = 'FAST'
+export const OPTIMAL = 'OPTIMAL'
+export const ALL = 'ALL'
+export const NO_TRANSFERS = 'NO_TRANSFERS'
+export const ONE_TRANSFER = 'ONE_TRANSFER'
+export const TWO_TRANSFERS = 'TWO_TRANSFERS'
+export const THREE_TRANSFERS = 'THREE_TRANSFERS'

@@ -79,10 +79,15 @@ function Tickets() {
 
   const ticket = ticketArr.map((el) => {
     const id = uuidv4()
+
+    const priseToString = el.price.toString()
+    const priseToStringLength = priseToString.length
+    const prise = priseToString.slice(0, priseToStringLength - 3) + ' ' + priseToString.slice(priseToStringLength - 3)
+
     return (
       <div key={id} className={classes.ticket}>
         <div className={classes['ticket__header']}>
-          <p className={classes['ticket__price']}>{el.price} Р</p>
+          <p className={classes['ticket__price']}>{prise} Р</p>
           <img src={logo} alt="logo" />
         </div>
         <div className={classes['ticket__content']}>
