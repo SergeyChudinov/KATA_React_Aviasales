@@ -1,4 +1,4 @@
-.filter__btn {
+.sort__btn {
 	width: 168px;
 	height: 50px;
 	background-color: #FFF;
@@ -14,17 +14,17 @@
 	cursor: pointer;
 }
 
-.filter__btn:first-child {
+.sort__btn:first-child {
 	border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
 }
 
-.filter__btn:last-child {
+.sort__btn:last-child {
 	border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
 }
 
-.filter__btn:hover {
+.sort__btn:hover {
 	background-color: #F1FCFF;
 }
 

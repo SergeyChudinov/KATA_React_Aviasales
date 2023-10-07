@@ -1,3 +1,3 @@
-import Filter from './filter'
+import Sort from './sort'
 
-export default Filter
+export default Sort
