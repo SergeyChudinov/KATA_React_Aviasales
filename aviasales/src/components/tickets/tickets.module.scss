@@ -26,17 +26,21 @@
 	line-height: 24px;
 }
 
+.ticket__logo {
+	width: 110px;
+	height: 36px;
+}
 .ticket__content {
+}
+
+.ticket__row {
 	display: flex;
 	justify-content: space-between;
+	margin-bottom: 10px;
 }
 
 .ticket__column {
 	width: 141px;
-}
-
-.ticket__row {
-	margin-bottom: 10px;
 }
 
 .ticket__head {
