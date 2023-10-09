@@ -1,11 +1,11 @@
 import { ALL, NO_TRANSFERS, ONE_TRANSFER, TWO_TRANSFERS, THREE_TRANSFERS } from './types'
 
 const initialThemeState = {
-  all: false,
-  noTransfers: false,
-  oneTransfers: false,
-  twoTransfers: false,
-  threeTransfers: false,
+  all: true,
+  noTransfers: true,
+  oneTransfers: true,
+  twoTransfers: true,
+  threeTransfers: true,
 }
 
 export const checkboxReducer = (state = initialThemeState, action) => {
