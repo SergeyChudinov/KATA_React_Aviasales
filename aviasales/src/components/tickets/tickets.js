@@ -1,34 +1,57 @@
-import { useState, useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { v4 as uuidv4 } from 'uuid'
+import { useDispatch, useSelector } from 'react-redux'
 
-import AviasalesService from '../../services/aviasales-services'
+import { listTicked } from '../../redux/actions'
 import Ticket from '../ticket'
+import Btn from '../button/button'
+import Spinner from '../spinner/spinner'
+import sortTickets from '../../sortFunc/sortTickets'
+import filterTickets from '../../sortFunc/filterTickets'
 
 function Tickets() {
-  const [ticketsArr, setTicketsArr] = useState([])
-  // const [stop, setStop] = useState(false)
-  const aviasalesService = new AviasalesService()
+  const dispatch = useDispatch()
+  const ticketsArr = useSelector((state) => state.tickets.tickets)
+  const sortValue = useSelector((state) => state.sort)
+  const checkboxValue = useSelector((state) => state.check)
+  const loading = useSelector((state) => state.tickets.loading)
+  const [ticketsLenth, setTicketsLenth] = useState(5)
 
   useEffect(() => {
-    updateTickets()
+    dispatch(listTicked())
   }, [])
 
-  const updateTickets = () => {
-    aviasalesService.getTickets().then(onTicketsLoaded)
+  const addTickets = () => {
+    setTicketsLenth((ticketsLenth) => ticketsLenth + 5)
   }
 
-  const onTicketsLoaded = (res) => {
-    setTicketsArr((ticketsArr) => [...ticketsArr, ...res.tickets])
-    // setStop(res.stop)
-    // !stop && updateTickets()
-  }
+  sortTickets(ticketsArr, sortValue)
+  const filtredTickets = filterTickets(ticketsArr, checkboxValue)
 
-  const tickets = ticketsArr.map((ticket) => {
+  const tickets = filtredTickets.slice(0, ticketsLenth).map((ticket) => {
     const id = uuidv4()
     return <Ticket key={id} ticket={ticket} />
   })
 
-  if (ticketsArr) return <>{tickets}</>
+  if (loading) {
+    return (
+      <>
+        <Spinner />
+        {tickets}
+        <Btn addTickets={addTickets} />
+      </>
+    )
+  } else {
+    if (filtredTickets.length > 0) {
+      return (
+        <>
+          {tickets}
+          <Btn addTickets={addTickets} />
+        </>
+      )
+    }
+    return <div>Рейсов, подходящих под заданные фильтры, не найдено</div>
+  }
 }
 
 export default Tickets

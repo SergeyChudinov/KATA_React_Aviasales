@@ -1,4 +1,18 @@
-import { CHEAP, FAST, OPTIMAL, ALL, NO_TRANSFERS, ONE_TRANSFER, TWO_TRANSFERS, THREE_TRANSFERS } from './types'
+import AviasalesService from '../services/aviasales-services'
+
+import {
+  CHEAP,
+  FAST,
+  OPTIMAL,
+  ALL,
+  NO_TRANSFERS,
+  ONE_TRANSFER,
+  TWO_TRANSFERS,
+  THREE_TRANSFERS,
+  LIST_TICKED_STARTED,
+  LIST_TICKED_SUCCESS,
+  LIST_TICKED_FAILURE,
+} from './types'
 
 export const showCheap = () => {
   return {
@@ -45,5 +59,59 @@ export function setTwoTransfers() {
 export function setThreeTransfers() {
   return {
     type: THREE_TRANSFERS,
+  }
+}
+
+export function listTickedStarted() {
+  return {
+    type: LIST_TICKED_STARTED,
+  }
+}
+
+export function listTickedSuccess(tickets, stop) {
+  return {
+    type: LIST_TICKED_SUCCESS,
+    payload: {
+      tickets,
+      stop,
+    },
+  }
+}
+
+export function listTickedFailure(error) {
+  return {
+    type: LIST_TICKED_FAILURE,
+    payload: {
+      error,
+    },
+  }
+}
+
+const aviasalesService = new AviasalesService()
+
+export function listTicked() {
+  return async function (dispatch) {
+    dispatch(listTickedStarted())
+    const whileSuccess = async () => {
+      let start
+      await aviasalesService
+        .getTickets()
+        .then((res) => {
+          dispatch(listTickedSuccess(res.tickets, res.stop))
+          start = !res.stop
+        })
+        .catch((err) => {
+          start = err.message.includes('500')
+          if (!start) {
+            dispatch(listTickedFailure(err.message))
+          }
+        })
+      return start
+    }
+
+    let status = true
+    while (status) {
+      status = await whileSuccess()
+    }
   }
 }
