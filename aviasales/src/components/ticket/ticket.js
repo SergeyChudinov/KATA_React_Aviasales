@@ -40,7 +40,8 @@ function TicketRows({ segment: { date, destination, duration, origin, stops } })
   const formattedTime = formatTime(duration)
 
   let stop
-  if (stops.length === 1) stop = '1 пересадка'
+  if (stops.length === 0) stop = '0 пересадок'
+  else if (stops.length === 1) stop = '1 пересадка'
   else stop = `${stops.length} пересадки`
 
   return (

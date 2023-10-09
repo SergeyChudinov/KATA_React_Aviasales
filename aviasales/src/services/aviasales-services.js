@@ -24,8 +24,6 @@ export default class AviasalesService {
     }
 
     const res = await this.getResource(`${this.url}/tickets?searchId=${this.id}`)
-    // console.log(res2.slice(0, 50))
-    console.log(res)
     return res
   }
 }

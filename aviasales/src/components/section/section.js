@@ -1,7 +1,7 @@
-import './section.scss'
-
 import Sort from '../sort'
 import Tickets from '../tickets'
+
+import './section.scss'
 
 function Section() {
   return (
