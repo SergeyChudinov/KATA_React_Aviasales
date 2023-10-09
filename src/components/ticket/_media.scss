@@ -1,0 +1,33 @@
+@media screen and (max-width: 320px) {
+	.ticket {
+		width: 300px;
+		height: 164px;
+		padding: 10px;
+		box-shadow: none;
+	}
+
+	.ticket:hover {
+		
+	}
+
+	.ticket__header {
+		margin-bottom: 10px;
+	}
+
+	.ticket__price {
+		font-size: 20px;
+	}
+
+	.ticket__logo {
+		width: 80px;
+		height: 36px;
+	}
+
+	.ticket__head {
+		font-size: 12px;
+	}
+
+	.ticket__info {
+		font-size: 12px;
+	}
+}	
