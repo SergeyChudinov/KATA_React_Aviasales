@@ -17,16 +17,15 @@ export default class AviasalesService {
     return await res.json()
   }
 
-  async getSearchId() {
-    const res = await this.getResource(`${this.url}/search`)
-    console.log(res.searchId)
-    return res.searchId
-  }
+  async getTickets() {
+    if (this.id === null) {
+      const id = await this.getResource(`${this.url}/search`)
+      this.id = id.searchId
+    }
 
-  async getTickets(searchId) {
-    const res = await this.getResource(`${this.url}/tickets?searchId=${searchId}`)
+    const res = await this.getResource(`${this.url}/tickets?searchId=${this.id}`)
     // console.log(res2.slice(0, 50))
-    // console.log(res.tickets)
+    console.log(res)
     return res
   }
 }

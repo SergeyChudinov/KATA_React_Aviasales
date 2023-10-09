@@ -6,28 +6,15 @@ import Ticket from '../ticket'
 
 function Tickets() {
   const [ticketsArr, setTicketsArr] = useState([])
-  const [searchId, setSearchId] = useState(null)
   // const [stop, setStop] = useState(false)
   const aviasalesService = new AviasalesService()
 
   useEffect(() => {
-    if (!searchId) {
-      getSearchId()
-    } else {
-      updateTickets(searchId)
-    }
-  }, [searchId])
-
-  const getSearchId = () => {
-    aviasalesService.getSearchId().then(onSearchIdLoaded)
-  }
+    updateTickets()
+  }, [])
 
   const updateTickets = () => {
-    aviasalesService.getTickets(searchId).then(onTicketsLoaded)
-  }
-
-  const onSearchIdLoaded = (res) => {
-    setSearchId(res)
+    aviasalesService.getTickets().then(onTicketsLoaded)
   }
 
   const onTicketsLoaded = (res) => {

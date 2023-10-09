@@ -1,12 +1,12 @@
 import './section.scss'
 
-import Filter from '../filter'
+import Sort from '../sort'
 import Tickets from '../tickets'
 
 function Section() {
   return (
     <section className="section">
-      <Filter />
+      <Sort />
       <Tickets />
     </section>
   )
