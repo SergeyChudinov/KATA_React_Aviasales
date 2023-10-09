@@ -33,25 +33,16 @@ function Tickets() {
     return <Ticket key={id} ticket={ticket} />
   })
 
-  if (loading) {
+  if (filtredTickets.length > 0) {
     return (
       <>
-        <Spinner />
+        {loading ? <Spinner /> : null}
         {tickets}
         <Btn addTickets={addTickets} />
       </>
     )
-  } else {
-    if (filtredTickets.length > 0) {
-      return (
-        <>
-          {tickets}
-          <Btn addTickets={addTickets} />
-        </>
-      )
-    }
-    return <div>Рейсов, подходящих под заданные фильтры, не найдено</div>
   }
+  return <div>Рейсов, подходящих под заданные фильтры, не найдено</div>
 }
 
 export default Tickets
