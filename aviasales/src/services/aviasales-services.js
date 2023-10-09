@@ -6,6 +6,7 @@ export default class AviasalesService {
     },
   }
 
+  id = null
   url = 'https://aviasales-test-api.kata.academy'
 
   async getResource(url) {
@@ -18,9 +19,14 @@ export default class AviasalesService {
 
   async getSearchId() {
     const res = await this.getResource(`${this.url}/search`)
-    const res2 = await this.getResource(`${this.url}/tickets?searchId=${res.searchId}&limit=10`)
+    console.log(res.searchId)
+    return res.searchId
+  }
+
+  async getTickets(searchId) {
+    const res = await this.getResource(`${this.url}/tickets?searchId=${searchId}`)
     // console.log(res2.slice(0, 50))
-    console.log(res2)
-    return res2.tickets
+    // console.log(res.tickets)
+    return res
   }
 }
