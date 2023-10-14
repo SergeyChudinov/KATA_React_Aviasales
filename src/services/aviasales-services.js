@@ -10,11 +10,19 @@ export default class AviasalesService {
   url = 'https://aviasales-test-api.kata.academy'
 
   async getResource(url) {
-    const res = await fetch(url, this.options)
-    if (!res.ok) {
-      throw new Error(`Could not fetch ${url} , status: ${res.status}`)
+    try {
+      const res = await fetch(url, this.options)
+      if (!res.ok) {
+        throw new Error(`Could not fetch ${url} , status: ${res.status}`)
+      }
+      return await res.json()
+    } catch (e) {
+      if (e.message.includes('отсутствует подключение к сети')) {
+        console.log('Ошибка отсутствия сети')
+      } else {
+        console.log(e.message)
+      }
     }
-    return await res.json()
   }
 
   async getTickets() {

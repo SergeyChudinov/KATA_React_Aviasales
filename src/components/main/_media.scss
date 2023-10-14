@@ -1,3 +1,17 @@
+@media screen and (max-width: 780px) {
+	.main {
+		width: 502px;
+		display: block;
+	}
+}
+
+@media screen and (max-width: 525px) {
+	.main {
+		width: 100%;
+		display: block;
+	}
+}
+
 @media screen and (max-width: 320px) {
 	.main {
 		width: 300px;

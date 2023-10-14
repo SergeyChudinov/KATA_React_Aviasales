@@ -1,0 +1,25 @@
+.ticket__row {
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 10px;
+}
+
+.ticket__column {
+	width: 141px;
+}
+
+.ticket__head {
+	color: #A0B0B9;
+	font-size: 12px;
+	font-weight: 600;
+	line-height: 18px;
+	letter-spacing: 0.5px;
+	text-transform: uppercase;
+}
+
+.ticket__info {
+	color: #4A4A4A;
+	font-size: 14px;
+	font-weight: 600;
+	line-height: 21px
+}

@@ -30,13 +30,16 @@ function Sort({ filter, showCheap, showFast, showOptimal }) {
       className = classes.active
     }
     return (
-      <button className={`${classes['sort__btn']} ${className}`} key={i} onClick={el.sort}>
-        {el.name}
-      </button>
+      <div key={i} className={`${classes['sort']} ${className}`} onClick={el.sort}>
+        <input type="radio" name="sort" id={el.type} className={`${classes['sort__radio']}`} />
+        <label htmlFor={el.type} className={`${classes['sort__label']}`}>
+          {el.name}
+        </label>
+      </div>
     )
   })
 
-  return <div className={classes.sort}>{filtersItems}</div>
+  return <fieldset className={classes.fieldset}>{filtersItems}</fieldset>
 }
 
 const mapStateToProps = (state) => {
